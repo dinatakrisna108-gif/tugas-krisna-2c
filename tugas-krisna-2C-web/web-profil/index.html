@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>krisna pratama wijaya</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                        }
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                        'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4' },
+                            '50%': { opacity: '0.8' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #0284c7 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .dark .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors duration-300 antialiased selection:bg-primary-500 selection:text-white">
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass-card transition-all duration-300 border-b border-slate-200/50 dark:border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center space-x-2 text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+                    <span class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary-600 to-accent-500 flex items-center justify-center text-white shadow-lg shadow-primary-500/30">
+                        AM
+                    </span>
+                    <span>krisna<span class="gradient-text">.dev</span></span>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                    <a href="#home" class="text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Home</a>
+                    <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
+                    <a href="#skills" class="text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Skills</a>
+                    <a href="#portfolio" class="text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Portfolio</a>
+                    <a href="#contact" class="text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Actions (Dark mode & CTA) -->
+                <div class="flex items-center space-x-4">
+                    <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-200/70 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all focus:outline-none" aria-label="Toggle Theme">
+                        <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+                    
+                    <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-primary-600 to-accent-600 text-white font-medium text-sm shadow-md shadow-primary-500/20 hover:shadow-lg hover:shadow-primary-500/30 hover:opacity-95 transition-all transform hover:-translate-y-0.5">
+                        Let's Talk
+                    </a>
+
+                    <!-- Mobile Hamburger Button -->
+                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-4 pt-4 pb-6 space-y-3 shadow-xl">
+            <a href="#home" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Home</a>
+            <a href="#about" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">About</a>
+            <a href="#skills" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Skills</a>
+            <a href="#portfolio" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Portfolio</a>
+            <a href="#contact" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+            <div class="pt-2">
+                <a href="#contact" class="mobile-link w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-primary-600 text-white font-medium text-sm">
+                    Let's Talk
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen pt-28 pb-16 md:pt-36 md:pb-24 flex items-center relative overflow-hidden">
+        <!-- Background Ambient Glow -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary-500/20 dark:bg-primary-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-accent-500/20 dark:bg-accent-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                <!-- Text Intro -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-primary-50 dark:bg-primary-950/60 border border-primary-200 dark:border-primary-800 text-primary-700 dark:text-primary-300 text-xs font-semibold tracking-wide uppercase">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>Available for Hire & Projects</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-slate-900 dark:text-white">
+                        Crafting High-Impact <span class="gradient-text">Digital Experiences</span>
+                    </h1>
+
+                    <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                        Hi, I'm <span class="font-semibold text-slate-900 dark:text-white">Alex Morgan</span> — a Senior Full Stack Developer & Creative UI/UX Designer with 6+ years of building fast, scalable, and user-centric web applications.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#portfolio" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-primary-600 to-accent-600 text-white font-semibold text-sm shadow-lg shadow-primary-500/25 hover:shadow-xl hover:shadow-primary-500/35 hover:-translate-y-0.5 transition-all text-center">
+                            Explore Projects <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-slate-200/80 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 font-semibold text-sm transition-all text-center border border-slate-300/50 dark:border-slate-700">
+                            Download CV <i class="fa-solid fa-download ml-2 text-xs"></i>
+                        </a>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="pt-8 grid grid-cols-3 gap-4 border-t border-slate-200 dark:border-slate-800/80 max-w-md mx-auto lg:mx-0">
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">6+</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Years Exp.</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">40+</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Projects Done</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">99%</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Satisfied Clients</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Avatar Profile Image -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96">
+                        <!-- Decorative Orbit Ring -->
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-primary-500 to-accent-500 animate-spin-slow opacity-30 blur-sm"></div>
+                        <div class="absolute -inset-2 rounded-3xl bg-gradient-to-r from-primary-500 to-accent-500 opacity-20 blur-xl"></div>
+                        
+                        <!-- Main Image Container -->
+                        <div class="relative w-full h-full rounded-3xl overflow-hidden border-2 border-slate-200 dark:border-slate-700/80 shadow-2xl glass-card p-2">
+                        <img src="c:\Users\ASUS\Downloads\WhatsApp Image 2026-10-05 at 14.04.31.jpg"  
+                                 alt="krisna pratama wijaya Profile" 
+                                 class="w-full h-full object-cover rounded-2xl filter contrast-[1.03] hover:scale-105 transition-transform duration-500">
+                        </div>
+
+                        <!-- Floating Badges -->
+                        <div class="absolute -bottom-4 -left-4 glass-card px-4 py-2.5 rounded-2xl shadow-xl flex items-center space-x-3 border border-white/40 dark:border-slate-700">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+                                <i class="fa-solid fa-code text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Specialty</p>
+                                <p class="text-xs font-bold text-slate-900 dark:text-white">Full Stack JS</p>
+                            </div>
+                        </div>
+
+                        <div class="absolute -top-4 -right-4 glass-card px-4 py-2.5 rounded-2xl shadow-xl flex items-center space-x-3 border border-white/40 dark:border-slate-700">
+                            <div class="w-8 h-8 rounded-lg bg-primary-500/10 text-primary-500 flex items-center justify-center">
+                                <i class="fa-solid fa-layer-group text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">UI/UX Design</p>
+                                <p class="text-xs font-bold text-slate-900 dark:text-white">Design Systems</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Skills Section -->
+    <section id="about" class="py-20 bg-slate-100/60 dark:bg-slate-900/40 relative border-y border-slate-200/60 dark:border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-primary-600 dark:text-primary-400 mb-2">About & Technical Expertise</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Bridging Design & Scalable Engineering</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Bio Description -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Passionate about building intuitive software that empowers users.</h3>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        I am a full-stack engineer with a strong background in frontend architecture, modern frameworks, and responsive web design. I believe software should not only look modern but also perform exceptionally under heavy load.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        My primary stack consists of React, Next.js, TypeScript, Tailwind CSS, Node.js, and PostgreSQL. Whether building an enterprise dashboard or a real-time web application, I emphasize clean code, accessibility, and high performance.
+                    </p>
+
+                    <!-- Quick Bullet Highlights -->
+                    <div class="grid grid-cols-2 gap-4 pt-2">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-circle-check text-primary-500"></i>
+                            <span class="text-sm font-medium text-slate-700 dark:text-slate-200">Clean Architecture</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-circle-check text-primary-500"></i>
+                            <span class="text-sm font-medium text-slate-700 dark:text-slate-200">Responsive First</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-circle-check text-primary-500"></i>
+                            <span class="text-sm font-medium text-slate-700 dark:text-slate-200">API Design & Integration</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-circle-check text-primary-500"></i>
+                            <span class="text-sm font-medium text-slate-700 dark:text-slate-200">UI/UX Prototyping</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Section with Bars -->
+                <div id="skills" class="space-y-6 glass-card p-8 rounded-3xl shadow-lg border border-slate-200/80 dark:border-slate-800">
+                    <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Core Tech Stack</h4>
+
+                    <!-- Skill Item 1 -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm font-semibold">
+                            <span class="text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-brands fa-react text-sky-400"></i> React & Next.js</span>
+                            <span class="text-primary-600 dark:text-primary-400">95%</span>
+                        </div>
+                        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-primary-500 to-accent-500 h-full rounded-full w-[95%] transition-all duration-1000"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Item 2 -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm font-semibold">
+                            <span class="text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-brands fa-js text-yellow-400"></i> JavaScript & TypeScript</span>
+                            <span class="text-primary-600 dark:text-primary-400">90%</span>
+                        </div>
+                        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-primary-500 to-accent-500 h-full rounded-full w-[90%] transition-all duration-1000"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Item 3 -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm font-semibold">
+                            <span class="text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-code text-cyan-400"></i> Tailwind CSS & UI Styling</span>
+                            <span class="text-primary-600 dark:text-primary-400">98%</span>
+                        </div>
+                        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-primary-500 to-accent-500 h-full rounded-full w-[98%] transition-all duration-1000"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Item 4 -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm font-semibold">
+                            <span class="text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-brands fa-node-js text-emerald-500"></i> Node.js & REST APIs</span>
+                            <span class="text-primary-600 dark:text-primary-400">85%</span>
+                        </div>
+                        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-primary-500 to-accent-500 h-full rounded-full w-[85%] transition-all duration-1000"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Item 5 -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm font-semibold">
+                            <span class="text-slate-800 dark:text-slate-200 flex items-center gap-2"><i class="fa-solid fa-figma text-pink-400"></i> UI/UX & Figma Prototyping</span>
+                            <span class="text-primary-600 dark:text-primary-400">88%</span>
+                        </div>
+                        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-primary-500 to-accent-500 h-full rounded-full w-[88%] transition-all duration-1000"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Showcase Section (Exactly 6 Images / Projects) -->
+    <section id="portfolio" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-primary-600 dark:text-primary-400 mb-2">Featured Works</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Recent Selected Projects</p>
+                <p class="mt-4 text-slate-600 dark:text-slate-400">Click on any project to view full specifications, tech stack, and interactive previews.</p>
+            </div>
+
+            <!-- Portfolio Grid (6 Cards) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project Card 1 -->
+                <div class="group glass-card rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col">
+                    <div class="relative overflow-hidden aspect-video bg-slate-100 dark:bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" 
+                             alt="Nexus SaaS Analytics" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                            <button onclick="openModal(0)" class="px-4 py-2.5 bg-white text-slate-900 rounded-xl text-xs font-bold shadow-lg hover:bg-slate-100 transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-expand"></i> Quick View
+                            </button>
+                        </div>
+                        <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md text-xs text-white font-medium px-3 py-1 rounded-full border border-white/20">
+                            SaaS & Dashboard
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                Nexus Analytics Platform
+                            </h3>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">
+                                Real-time enterprise data visualization dashboard with customizable charts and financial metrics.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-200/70 dark:bg-slate-800 px-2.5 py-1 rounded-md">React</span>
+                                <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-200/70 dark:bg-slate-800 px-2.5 py-1 rounded-md">Tailwind</span>
+                            </div>
+                            <button onclick="openModal(0)" class="text-primary-600 dark:text-primary-400 font-semibold text-xs hover:underline flex items-center gap-1">
+                                Details <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="group glass-card rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col">
+                    <div class="relative overflow-hidden aspect-video bg-slate-100 dark:bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" 
+                             alt="AI Studio Suite" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                            <button onclick="openModal(1)" class="px-4 py-2.5 bg-white text-slate-900 rounded-xl text-xs font-bold shadow-lg hover:bg-slate-100 transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-expand"></i> Quick View
+                            </button>
+                        </div>
+                        <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md text-xs text-white font-medium px-3 py-1 rounded-full border border-white/20">
+                            AI Tooling
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                LuminAI Content Studio
+                            </h3>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">
+                                Generative AI web app for automated artwork generation, text styling, and prompt engineering.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-200/70 dark:bg-slate-800 px-2.5 py-1 rounded-md">Next.js</span>
+                                <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-200/70 dark:bg-slate-800 px-2.5 py-1 rounded-md">OpenAI</span>
+                            </div>
+                            <button onclick="openModal(1)" class="text-primary-600 dark:text-primary-400 font-semibold text-xs hover:underline flex items-center gap-1">
+                                Details <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="group glass-card rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col">
+                    <div class="relative overflow-hidden aspect-video bg-slate-100 dark:bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80" 
+                             alt="PayPulse Mobile FinTech" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                            <button onclick="openModal(2)" class="px-4 py-2.5 bg-white text-slate-900 rounded-xl text-xs font-bold shadow-lg hover:bg-slate-100 transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-expand"></i> Quick View
+                            </button>
+                        </div>
+                        <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md text-xs text-white font-medium px-3 py-1 rounded-full border border-white/20">
+                            Mobile UX
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                PayPulse Financial App
+                            </h3>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">
+                                Modern wallet interface for instant peer-to-peer transfers, subscription tracking, and budget analytics.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-200/70 dark:bg-slate-800 px-2.5 py-1 rounded-md">React Native</span>
+                                <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-200/70 dark:bg-slate-800 px-2.5 py-1 rounded-md">TypeScript</span>
+                            </div>
+                            <button onclick="openModal(2)" class="text-primary-600 dark:text-primary-400 font-semibold text-xs hover:underline flex items-center gap-1">
+                                Details <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 4 -->
+                <div class="group glass-card rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col">
+                    <div class="relative overflow-hidden aspect-video bg-slate-100 dark:bg-slate-800">
+                        <img src="web-profil/img/WhatsApp Image 2026-10-05 at 13.45.02.jpeg" 
+                             alt="Crypto Pulse Exchange" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                            <button onclick="openModal(3)" class="px-4 py-2.5 bg-white text-slate-900 rounded-xl text-xs font-bold shadow-lg hover:bg-slate-100 transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-expand"></i> Quick View
+                            </button>
+                        </div>
+                        <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md text-xs text-white font-medium px-3 py-1 rounded-full border border-white/20">
+                            Web3 & Crypto
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                Apex Crypto Trading Terminal
+                            </h3>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">
+                                High-frequency cryptocurrency market tracker with live WebSocket price streams and order book alerts.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-200/70 dark:bg-slate-800 px-2.5 py-1 rounded-md">Vue 3</span>
+                                <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-200/70 dark:bg-slate-800 px-2.5 py-1 rounded-md">WebSockets</span>
+                            </div>
+                            <button onclick="openModal(3)" class="text-primary-600 dark:text-primary-400 font-semibold text-xs hover:underline flex items-center gap-1">
+                                Details <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 5 -->
+                <div class="group glass-card rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col">
+                    <div class="relative overflow-hidden aspect-video bg-slate-100 dark:bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" 
+                             alt="Urban Villa Architecture" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                            <button onclick="openModal(4)" class="px-4 py-2.5 bg-white text-slate-900 rounded-xl text-xs font-bold shadow-lg hover:bg-slate-100 transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-expand"></i> Quick View
+                            </button>
+                        </div>
+                        <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md text-xs text-white font-medium px-3 py-1 rounded-full border border-white/20">
+                            Architecture
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                Forma Architecture Showcase
+                            </h3>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">
+                                Minimalist gallery app for interior design studios, featuring 3D virtual room walkthroughs and booking.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-200/70 dark:bg-slate-800 px-2.5 py-1 rounded-md">Three.js</span>
+                                <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-200/70 dark:bg-slate-800 px-2.5 py-1 rounded-md">Tailwind</span>
+                            </div>
+                            <button onclick="openModal(4)" class="text-primary-600 dark:text-primary-400 font-semibold text-xs hover:underline flex items-center gap-1">
+                                Details <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 6 -->
+                <div class="group glass-card rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col">
+                    <div class="relative overflow-hidden aspect-video bg-slate-100 dark:bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80" 
+                             alt="Smart Home Controller" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                            <button onclick="openModal(5)" class="px-4 py-2.5 bg-white text-slate-900 rounded-xl text-xs font-bold shadow-lg hover:bg-slate-100 transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-expand"></i> Quick View
+                            </button>
+                        </div>
+                        <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md text-xs text-white font-medium px-3 py-1 rounded-full border border-white/20">
+                            IoT & Automation
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                SmartHome IoT Central
+                            </h3>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">
+                                Centralized smart home controller for real-time temperature, lighting, and security ecosystem monitoring.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-200/70 dark:bg-slate-800 px-2.5 py-1 rounded-md">React</span>
+                                <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-400 bg-slate-200/70 dark:bg-slate-800 px-2.5 py-1 rounded-md">GraphQL</span>
+                            </div>
+                            <button onclick="openModal(5)" class="text-primary-600 dark:text-primary-400 font-semibold text-xs hover:underline flex items-center gap-1">
+                                Details <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Lightbox Modal -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-slate-950/80 backdrop-blur-md transition-opacity duration-300">
+        <div class="relative w-full max-w-3xl glass-card rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[90vh] flex flex-col">
+            <!-- Modal Close Button -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-slate-900/70 text-white flex items-center justify-center hover:bg-slate-900 transition-all focus:outline-none">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Modal Content (Scrollable) -->
+            <div class="overflow-y-auto p-6 sm:p-8 space-y-6">
+                <!-- Large Image Preview -->
+                <div class="relative rounded-2xl overflow-hidden aspect-video bg-slate-900">
+                    <img id="modalImg" src="" alt="Project Image" class="w-full h-full object-cover">
+                    <span id="modalCategory" class="absolute top-4 left-4 bg-primary-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">
+                        Category
+                    </span>
+                </div>
+
+                <!-- Modal Title & Tech Tags -->
+                <div>
+                    <h3 id="modalTitle" class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white"></h3>
+                    <div id="modalTags" class="flex flex-wrap gap-2 mt-3">
+                        <!-- Populated dynamically via JS -->
+                    </div>
+                </div>
+
+                <!-- Modal Description -->
+                <div class="space-y-3 border-t border-slate-200 dark:border-slate-800 pt-4">
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Overview</h4>
+                    <p id="modalDescription" class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Full detailed description goes here.
+                    </p>
+                </div>
+
+                <!-- Modal Actions -->
+                <div class="flex flex-col sm:flex-row items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+                    <a id="modalLiveBtn" href="#" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-primary-600 text-white font-medium text-sm shadow-lg hover:bg-primary-700 transition-all gap-2">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> Live Demo
+                    </a>
+                    <a id="modalRepoBtn" href="#" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-medium text-sm hover:bg-slate-300 dark:hover:bg-slate-700 transition-all gap-2">
+                        <i class="fa-brands fa-github text-sm"></i> Source Code
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-slate-100/60 dark:bg-slate-900/40 relative border-t border-slate-200/60 dark:border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-primary-600 dark:text-primary-400 mb-2">Get In Touch</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Let's Work Together</p>
+                <p class="mt-4 text-slate-600 dark:text-slate-400">Have a project in mind or want to discuss engineering opportunities? Send a message below.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Contact Info -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div class="glass-card p-6 sm:p-8 rounded-3xl space-y-6 border border-slate-200/80 dark:border-slate-800">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Contact Information</h3>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-primary-500/10 text-primary-600 dark:text-primary-400 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-regular fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Email</p>
+                                <a href="mailto:alex.morgan@example.com" class="text-slate-900 dark:text-white font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                                    alex.morgan@example.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-accent-500/10 text-accent-600 dark:text-accent-400 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Location</p>
+                                <p class="text-slate-900 dark:text-white font-medium">San Francisco, CA & Remote</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Availability</p>
+                                <p class="text-slate-900 dark:text-white font-medium">Open to Freelance & Full-time</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Icons -->
+                    <div class="glass-card p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800">
+                        <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">Connect on Socials</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center hover:bg-primary-600 hover:text-white transition-all">
+                                <i class="fa-brands fa-github text-lg"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center hover:bg-primary-600 hover:text-white transition-all">
+                                <i class="fa-brands fa-linkedin-in text-lg"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center hover:bg-primary-600 hover:text-white transition-all">
+                                <i class="fa-brands fa-x-twitter text-lg"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center hover:bg-primary-600 hover:text-white transition-all">
+                                <i class="fa-brands fa-instagram text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7">
+                    <form id="contactForm" class="glass-card p-8 rounded-3xl space-y-6 border border-slate-200/80 dark:border-slate-800">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Your Name</label>
+                                <input type="text" id="name" required placeholder="John Doe" 
+                                       class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Your Email</label>
+                                <input type="email" id="email" required placeholder="john@example.com" 
+                                       class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="subject" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Subject</label>
+                            <input type="text" id="subject" required placeholder="Project Inquiry / Hiring" 
+                                   class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all">
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Message</label>
+                            <textarea id="message" rows="5" required placeholder="Tell me about your project or ideas..." 
+                                      class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"></textarea>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-primary-600 to-accent-600 text-white font-bold text-sm shadow-lg shadow-primary-500/25 hover:shadow-xl hover:opacity-95 transition-all flex items-center justify-center gap-2">
+                            <span>Send Message</span>
+                            <i class="fa-solid fa-paper-plane text-xs"></i>
+                        </button>
+
+                        <!-- Success Feedback Banner -->
+                        <div id="formFeedback" class="hidden p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-sm font-medium text-center">
+                            <i class="fa-solid fa-circle-check mr-2"></i> Thank you! Your message has been sent successfully.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-slate-200/60 dark:border-slate-800/60 text-center text-xs text-slate-500 dark:text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© <span id="currentYear"></span> Alex Morgan. All rights reserved.</p>
+            <p class="flex items-center gap-1">
+                Built with <i class="fa-solid fa-heart text-rose-500 text-xs"></i> using Tailwind CSS & Vanilla JS
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const htmlElement = document.documentElement;
+
+        // Check stored theme or default to dark
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+            themeIcon.className = 'fa-solid fa-sun text-lg text-amber-400';
+        } else {
+            htmlElement.classList.remove('dark');
+            themeIcon.className = 'fa-solid fa-moon text-lg text-slate-700';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.theme = 'light';
+                themeIcon.className = 'fa-solid fa-moon text-lg text-slate-700';
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.theme = 'dark';
+                themeIcon.className = 'fa-solid fa-sun text-lg text-amber-400';
+            }
+        });
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        const projectsData = [
+            {
+                title: "Nexus Analytics Platform",
+                category: "SaaS & Dashboard",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+                description: "Nexus is a full-featured SaaS web application built for enterprise metrics analysis. It provides interactive widgets, real-time telemetry charting, CSV exports, and customized role-based permissions.",
+                tags: ["React 18", "Tailwind CSS", "Chart.js", "Node.js", "PostgreSQL"],
+                liveUrl: "https://example.com",
+                githubUrl: "https://github.com"
+            },
+            {
+                title: "LuminAI Content Studio",
+                category: "AI Tooling",
+                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+                description: "A state-of-the-art web application integrating generative AI models to help copywriters and digital artists generate prompt ideas, image variations, and SEO content templates in seconds.",
+                tags: ["Next.js", "OpenAI API", "Tailwind CSS", "Zustand", "Vercel"],
+                liveUrl: "https://example.com",
+                githubUrl: "https://github.com"
+            },
+            {
+                title: "PayPulse Financial App",
+                category: "Mobile UX",
+                image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80",
+                description: "PayPulse makes personal finance management effortless with budget categorization, automated bill reminders, split-bill calculators, and biometrics authentication.",
+                tags: ["React Native", "TypeScript", "Tailwind", "Firebase", "Stripe API"],
+                liveUrl: "https://example.com",
+                githubUrl: "https://github.com"
+            },
+            {
+                title: "Apex Crypto Trading Terminal",
+                category: "Web3 & Crypto",
+                image: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=1200&q=80",
+                description: "High-frequency trading terminal connected to major cryptocurrency exchanges via WebSocket. Supports real-time candlestick charts, order execution simulation, and custom price alerts.",
+                tags: ["Vue 3", "WebSockets", "TradingView API", "Pinia", "Tailwind"],
+                liveUrl: "https://example.com",
+                githubUrl: "https://github.com"
+            },
+            {
+                title: "Forma Architecture Showcase",
+                category: "Architecture",
+                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+                description: "An immersive, interactive gallery showcasing luxury architectural blueprints and interior design concepts, complete with 360-degree virtual tour features.",
+                tags: ["Three.js", "WebGL", "Tailwind CSS", "GSAP Animations"],
+                liveUrl: "https://example.com",
+                githubUrl: "https://github.com"
+            },
+            {
+                title: "SmartHome IoT Central",
+                category: "IoT & Automation",
+                image: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1200&q=80",
+                description: "A unified smart home control center displaying live energy usage, connected camera feeds, smart thermostat adjustments, and automated routine scheduling.",
+                tags: ["React", "GraphQL", "Tailwind CSS", "WebSockets", "Docker"],
+                liveUrl: "https://example.com",
+                githubUrl: "https://github.com"
+            }
+        ];
+
+        const modal = document.getElementById('projectModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalCategory = document.getElementById('modalCategory');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalTags = document.getElementById('modalTags');
+        const modalLiveBtn = document.getElementById('modalLiveBtn');
+        const modalRepoBtn = document.getElementById('modalRepoBtn');
+
+        function openModal(index) {
+            const project = projectsData[index];
+            if (!project) return;
+
+            modalImg.src = project.image;
+            modalCategory.textContent = project.category;
+            modalTitle.textContent = project.title;
+            modalDescription.textContent = project.description;
+            modalLiveBtn.href = project.liveUrl;
+            modalRepoBtn.href = project.githubUrl;
+
+            // Render tags
+            modalTags.innerHTML = '';
+            project.tags.forEach(tag => {
+                const tagSpan = document.createElement('span');
+                tagSpan.className = 'text-xs font-semibold px-3 py-1 rounded-lg bg-primary-500/10 text-primary-600 dark:text-primary-400 border border-primary-500/20';
+                tagSpan.textContent = tag;
+                modalTags.appendChild(tagSpan);
+            });
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside content container
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const formFeedback = document.getElementById('formFeedback');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Simulate loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> <span>Sending...</span>';
+
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>Send Message</span> <i class="fa-solid fa-paper-plane text-xs"></i>';
+                
+                // Show feedback message
+                formFeedback.classList.remove('hidden');
+                contactForm.reset();
+
+                // Hide feedback after 5 seconds
+                setTimeout(() => {
+                    formFeedback.classList.add('hidden');
+                }, 5000);
+            }, 1200);
+        });
+
+        // Set dynamic current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
